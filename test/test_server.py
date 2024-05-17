@@ -1,3 +1,5 @@
+from server import *
+
 
 def test_IP_ADDRESS():
-    print('test')
+    assert (isinstance(IP_ADDRESS, str) == True)
