@@ -32,8 +32,10 @@ def main():
     # Put the socket instance into a loop while it waits for an incoming connection
     while True:
 
-        #
+        # When a client con
+        # address - Returns a tuple containing the clients eg
         client, address = socket_instance.accept()
+
         print(f'[*] Accepted connection from {address[0]:{address[1]}}')
         client_handler = threading.Thread(target=handle_client, args=(client,))
         client_handler.start()
