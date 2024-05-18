@@ -11,7 +11,8 @@ import socket
 import threading
 
 IP_ADDRESS = "0.0.0.0"
-PORT = 3001
+
+PORT = 8080
 
 
 def main():
@@ -31,8 +32,8 @@ def main():
     # Put the socket instance into a loop while it waits for an incoming connection
     while True:
 
-        # When a client con
-        # address - Returns a tuple containing the clients eg
+        # client -
+        # address - Returns a tuple containing the clients IP Address and Port number
         client, address = socket_instance.accept()
 
         print(f'[*] Accepted connection from {address[0]:{address[1]}}')
@@ -40,11 +41,10 @@ def main():
         client_handler.start()
 
 
-def handle_client(client_socket):
-    with client_socket as sock:
-        request = sock.recv(1024)
-        print(f'[*] Received: {request.decode("utf-8")}')
-        sock.send(b'ACK')
+def handle_client(client_socket: socket):
+    request = client_socket.recv(1024)
+    print(f'[*] Received: {request.decode("utf-8")}')
+    client_socket.send(b'ACK')
 
 
 if __name__ == "__main__":
