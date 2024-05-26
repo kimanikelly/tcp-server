@@ -2,7 +2,7 @@
 
 FROM python:3.10
 
-EXPOSE 8080
+EXPOSE 80
 
 ENTRYPOINT [ "python3", "./server.py" ]
 
