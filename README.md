@@ -4,7 +4,7 @@
 
 Used the server code from Chapter 2: Basic Networking Tools, pages 12-13 in [Black Hat Python: Python Programming for Hackers and Pentesters](https://www.amazon.com/Black-Hat-Python-2nd-Programming/dp/1718501129).
 
-Implemented custom containerization that was not included with the server code by building a Dockerfile and deployed the Dockerized server to an AWS EC2 instance.
+Implemented custom containerization that was not included with the server code by building a Dockerfile and deployed the Dockerized server to an AWS EC2 instance with the help of [Hosting a Docker Container on AWS EC2 Free Tier in under 12 minutes](https://www.youtube.com/watch?v=qNIniDftAcU).
 
 ## AWS EC2 Instance
 
