@@ -2,6 +2,10 @@
 
 ## Summary
 
+Used the server code from Chapter 2: Basic Networking Tools, pages 12-13 in [Black Hat Python: Python Programming for Hackers and Pentesters](https://www.amazon.com/Black-Hat-Python-2nd-Programming/dp/1718501129).
+
+Implemented custom containerization that was not included with the server code by building a Dockerfile and deployed the Dockerized server to an AWS EC2 instance.
+
 ## AWS EC2 Instance
 
 - http://54.221.151.58:80
