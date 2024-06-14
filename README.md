@@ -4,7 +4,7 @@
 
 ## AWS EC2 Instance
 
-http://54.221.151.58:80
+- http://54.221.151.58:80
 
 ## Prerequisites
 
