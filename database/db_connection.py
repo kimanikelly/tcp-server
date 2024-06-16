@@ -5,6 +5,7 @@ import dotenv
 dotenv.load_dotenv()
 
 sql_host = os.getenv("SQL_HOST")
+
 sql_user = os.getenv("SQL_USER")
 sql_password = os.getenv("SQL_PASSWORD")
 sql_database = os.getenv("SQL_DATABASE")
