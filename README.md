@@ -1,5 +1,7 @@
 # TCP-Server
 
+[![Python application](https://github.com/kimanikelly/tcp-server/actions/workflows/python-app.yml/badge.svg)](https://github.com/kimanikelly/tcp-server/actions/workflows/python-app.yml)
+
 ## Summary
 
 Used the server code from Chapter 2: Basic Networking Tools, pages 12-13 in [Black Hat Python: Python Programming for Hackers and Pentesters](https://www.amazon.com/Black-Hat-Python-2nd-Programming/dp/1718501129).
