@@ -33,6 +33,12 @@ python3 server.py
 
 ## Resources
 
-- [Black Hat Python: Python Programming for Hackers and Pentesters](https://www.amazon.com/Black-Hat-Python-2nd-Programming/dp/1718501129)
+- TCP Server Example - [Black Hat Python: Python Programming for Hackers and Pentesters](https://www.amazon.com/Black-Hat-Python-2nd-Programming/dp/1718501129)
 
-- [Hosting a Docker Container on AWS EC2 Free Tier in under 12 minutes](https://www.youtube.com/watch?v=qNIniDftAcU)
+- Deploying Docker Container to EC2 - [Hosting a Docker Container on AWS EC2 Free Tier in under 12 minutes](https://www.youtube.com/watch?v=qNIniDftAcU)
+
+- Creating MySQL Database - [W3 Schools Python MySQL (Create Database)](https://www.w3schools.com/python/python_mysql_create_db.asp)
+
+- Creating MySQL Table - [W3 Schools Python MySQL (Create Table)](https://www.w3schools.com/python/python_mysql_create_table.asp)
+
+- Insert Into MySQL Table - [W3 Schools Python MySQL (Insert Into Table)](https://www.w3schools.com/python/python_mysql_insert.asp)
