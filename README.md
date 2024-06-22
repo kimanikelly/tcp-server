@@ -16,6 +16,7 @@ Implemented custom containerization that was not included with the server code b
 
 - [Install Python](https://www.python.org/downloads/)
 - [Install Docker](https://docs.docker.com/engine/install/)
+- [Install MySQL](https://dev.mysql.com/downloads/workbench/)
 
 ## Getting Started
 
