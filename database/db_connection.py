@@ -10,7 +10,7 @@ sql_user = os.getenv("SQL_USER")
 sql_password = os.getenv("SQL_PASSWORD")
 sql_database = os.getenv("SQL_DATABASE")
 
-query = "INSERT INTO client (client_address,client_port) VALUES (%s, %s)"
+query = "INSERT INTO client (client_address,client_port,client_connection_timestamp) VALUES (%s, %s,%s)"
 
 db = sql.connect(
     host=sql_host,

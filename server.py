@@ -12,6 +12,8 @@ import threading
 
 from database.db_connection import cursor, query, db
 
+import datetime
+
 ip_address = "0.0.0.0"
 
 # Port number the TCP Server will listen on
@@ -39,12 +41,14 @@ def main():
         # address - Returns a tuple containing the clients Host Address and Port number
         client, address = socket_instance.accept()
 
-        print(f'[*] Accepted connection from {address[0]:{address[1]}}')
+        # Stores the client_address, client_port, and time of connection
+        val = (address[0], address[1], datetime.datetime.now())
 
-        val = (address[0], address[1])
         cursor.execute(query, val)
 
         db.commit()
+
+        print(f'[*] Accepted connection from {address[0]:{address[1]}}')
 
         client_handler = threading.Thread(target=handle_client, args=(client,))
         client_handler.start()
