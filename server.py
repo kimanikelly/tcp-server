@@ -10,6 +10,8 @@ import socket
 # threading module - Allows multpile threads of execution to take place in a Python program.
 import threading
 
+from database.db_connection import cursor, query, db
+
 ip_address = "0.0.0.0"
 
 # Port number the TCP Server will listen on
@@ -38,6 +40,11 @@ def main():
         client, address = socket_instance.accept()
 
         print(f'[*] Accepted connection from {address[0]:{address[1]}}')
+
+        val = (address[0], address[1])
+        cursor.execute(query, val)
+
+        db.commit()
 
         client_handler = threading.Thread(target=handle_client, args=(client,))
         client_handler.start()
