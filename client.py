@@ -1,6 +1,7 @@
 import socket
 import os
 import dotenv
+import click
 
 dotenv.load_dotenv()
 
