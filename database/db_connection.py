@@ -11,6 +11,7 @@ sql_password = os.getenv("SQL_PASSWORD")
 sql_database = os.getenv("SQL_DATABASE")
 
 query = "INSERT INTO client (client_address,client_port,client_connection_timestamp) VALUES (%s, %s,%s)"
+register_query = "INSERT INTO"
 
 db = sql.connect(
     host=sql_host,

@@ -42,11 +42,11 @@ def main():
         client, address = socket_instance.accept()
 
         # Stores the client_address, client_port, and time of connection
-        val = (address[0], address[1], datetime.datetime.now())
+        # val = (address[0], address[1], datetime.datetime.now())
 
-        cursor.execute(query, val)
+        # cursor.execute(query, val)
 
-        db.commit()
+        # db.commit()
 
         print(f'[*] Accepted connection from {address[0]:{address[1]}}')
 
