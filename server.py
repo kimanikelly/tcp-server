@@ -10,9 +10,10 @@ import socket
 # threading module - Allows multpile threads of execution to take place in a Python program.
 import threading
 
-from database.db_connection import cursor, query, db
+import json
 
-import datetime
+from database.db_connection import cursor, register_query, db
+
 
 ip_address = "0.0.0.0"
 
@@ -41,13 +42,6 @@ def main():
         # address - Returns a tuple containing the clients Host Address and Port number
         client, address = socket_instance.accept()
 
-        # Stores the client_address, client_port, and time of connection
-        # val = (address[0], address[1], datetime.datetime.now())
-
-        # cursor.execute(query, val)
-
-        # db.commit()
-
         print(f'[*] Accepted connection from {address[0]:{address[1]}}')
 
         client_handler = threading.Thread(target=handle_client, args=(client,))
@@ -56,14 +50,18 @@ def main():
 
 def handle_client(client_socket: socket):
 
-    # Returns the request as bytes
-    request = client_socket.recv(1024)
+    # Returns the user bytes string sent from the TCP Client and converts it to a JSON
+    request = json.loads(client_socket.recv(1024))
 
-    # Prints the request received from bytes to a string
-    print(f'[*] Received: {request.decode("utf-8")}')
+    #
+    register_values = (request['username'], request['password'],
+                       request['join_date'], request['entries'])
 
-    # Sends this message back to the client as bytes
-    client_socket.send(b'TCP Server')
+    #
+    cursor.execute(register_query, register_values)
+
+    # Commit the transaction to MySQL
+    db.commit()
 
 
 if __name__ == "__main__":

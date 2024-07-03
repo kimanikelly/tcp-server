@@ -2,10 +2,10 @@ import socket
 import os
 import dotenv
 import click
-import datetime
+from datetime import date
 import hashlib
 import getpass
-
+import json
 
 dotenv.load_dotenv()
 
@@ -25,8 +25,9 @@ client.connect((target_host, target_port))
 
 
 class User:
-    def __init__(self, username, join_date, entries):
+    def __init__(self, username, password, join_date, entries):
         self.username = username
+        self.password = password
         self.join_date = join_date
         self.entries = entries
 
@@ -76,8 +77,19 @@ def register():
         verified_hashed_password = hashlib.sha256(getpass.getpass(
             "Password was not verified, please re-enter your password: ").encode("utf-8")).hexdigest().strip()
 
-    user = User(username=username,
-                join_date=datetime.datetime.now(), entries=0)
+    # User Class
+    user = User(
+        username=username,
+        password=verified_hashed_password,
+        join_date=str(date.today()),
+        entries=0
+    )
+
+    # Converts the user class to a bytes string
+    user_obj_to_str = bytes(json.dumps(user.__dict__), encoding='utf-8')
+
+    # Sends the converted user bytes string to the TCP Server
+    client.send(user_obj_to_str)
 
     # Prints to the CLI after successfully registering a user
     click.echo(f'Welcome, {user.username}!')
