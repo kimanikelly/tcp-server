@@ -2,7 +2,7 @@ import socket
 import os
 import dotenv
 import click
-from datetime import date
+import datetime
 import hashlib
 import getpass
 import json
@@ -81,7 +81,7 @@ def register():
     user = User(
         username=username,
         password=verified_hashed_password,
-        join_date=str(date.today()),
+        join_date=str(datetime.datetime.now()),
         entries=0
     )
 
