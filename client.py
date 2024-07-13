@@ -6,7 +6,7 @@ import datetime
 import hashlib
 import getpass
 import json
-
+from database.db_connection import user_exists, cursor
 dotenv.load_dotenv()
 
 development_host = os.getenv("DEVELOPMENT_HOST")
@@ -25,7 +25,8 @@ client.connect((target_host, target_port))
 
 
 class User:
-    def __init__(self, username, password, join_date, entries):
+    def __init__(self, event, username, password, join_date, entries):
+        self.event = event
         self.username = username
         self.password = password
         self.join_date = join_date
@@ -37,17 +38,24 @@ def cli():
     pass
 
 
+# User Class
+user = User(
+    event="",
+    username="",
+    password="",
+    join_date="",
+    entries=""
+)
+
+
 @cli.command(help="Register new users")
 def register():
-
-    # Temporary placeholder
-    test = "test"
 
     # Prompts new users for their username (whitespaces are removed)
     username = input("Create your username: ").strip()
 
     # Checks if the username inputs are empty or already exists
-    while username == "" or username == test:
+    while username == "" or user_exists()[0] == 1:
 
         # Checks if the username is empty
         if username == "":
@@ -56,7 +64,7 @@ def register():
                 "Username cannot be empty, please re-enter your username: ").strip()
 
         # Checks if the username already exists
-        if username == test:
+        if user_exists()[0] == 1:
 
             # Prompts the user for a new username (whitespaces are removed)
             username = input(
@@ -77,19 +85,17 @@ def register():
         verified_hashed_password = hashlib.sha256(getpass.getpass(
             "Password was not verified, please re-enter your password: ").encode("utf-8")).hexdigest().strip()
 
-    # User Class
-    user = User(
-        username=username,
-        password=verified_hashed_password,
-        join_date=str(datetime.datetime.now()),
-        entries=0
-    )
+    user.event = "user_registration"
+    user.username = username
+    user.password = verified_hashed_password
+    user.join_date = str(datetime.datetime.now())
+    user.entries = 0
 
     # Converts the user class to a bytes string
-    user_obj_to_str = bytes(json.dumps(user.__dict__), encoding='utf-8')
+    user_obj_to_bytes = bytes(json.dumps(user.__dict__), encoding='utf-8')
 
     # Sends the converted user bytes string to the TCP Server
-    client.send(user_obj_to_str)
+    client.send(user_obj_to_bytes)
 
     # Prints to the CLI after successfully registering a user
     click.echo(f'Welcome, {user.username}!')

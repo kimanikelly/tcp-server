@@ -50,18 +50,18 @@ def main():
 
 def handle_client(client_socket: socket):
 
-    # Returns the user bytes string sent from the TCP Client and converts it to a JSON
+    # # Returns the user bytes string sent from the TCP Client and converts it to a JSON
     request = json.loads(client_socket.recv(1024))
 
-    #
-    register_values = (request['username'], request['password'],
-                       request['join_date'], request['entries'])
+    if request['event'] == "user_registration":
 
-    #
-    cursor.execute(register_query, register_values)
+        register_values = (request['username'], request['password'],
+                           request['join_date'], request['entries'])
 
-    # Commit the transaction to MySQL
-    db.commit()
+        cursor.execute(register_query, register_values)
+
+        # Commit the transaction to MySQL
+        db.commit()
 
 
 if __name__ == "__main__":
