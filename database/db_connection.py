@@ -11,7 +11,7 @@ sql_database = os.getenv("SQL_DATABASE")
 
 register_query = "INSERT INTO users (username,password,join_date,entries) VALUES (%s, %s, %s, %s)"
 
-user_exists_query = "SELECT EXISTS(SELECT 1 FROM users WHERE username = 'kimani123')"
+user_exists_query = "SELECT EXISTS(SELECT 1 FROM users WHERE username =  %s)"
 
 db = sql.connect(
     host=sql_host,
@@ -23,8 +23,8 @@ db = sql.connect(
 cursor = db.cursor()
 
 
-def user_exists():
+def user_exists(username):
 
-    cursor.execute(user_exists_query)
+    cursor.execute(user_exists_query, (username,))
 
-    return cursor.fetchone()
+    return cursor.fetchone()[0]

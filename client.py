@@ -55,7 +55,7 @@ def register():
     username = input("Create your username: ").strip()
 
     # Checks if the username inputs are empty or already exists
-    while username == "" or user_exists()[0] == 1:
+    while username == "" or user_exists(username) == 1:
 
         # Checks if the username is empty
         if username == "":
@@ -64,7 +64,7 @@ def register():
                 "Username cannot be empty, please re-enter your username: ").strip()
 
         # Checks if the username already exists
-        if user_exists()[0] == 1:
+        if user_exists(username) == 1:
 
             # Prompts the user for a new username (whitespaces are removed)
             username = input(
